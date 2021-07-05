@@ -3,12 +3,10 @@
 #define PAVUK_PARSER_H
 #include <Crawler.hpp>
 
-class Parser{
+class Parser {
  public:
-  Parser(const int& num_workers,
-         std::vector<string>& ref_all_img_)
-      : parsers(num_workers),
-        ref_all_img(ref_all_img_) {};
+  Parser(const int& num_workers, std::vector<string>& ref_all_img_)
+      : parsers(num_workers), ref_all_img(ref_all_img_){};
 
   void search_for_links(GumboNode* node, const Html& html);
 
@@ -21,10 +19,8 @@ class Parser{
   std::deque<string> parse(const Html& html, bool flag);
 
  private:
-
   ThreadPool parsers;
   std::deque<string> all_links;
   std::vector<string>& ref_all_img;
 };
 #endif  // PAVUK_PARSER_H
-

@@ -3,7 +3,7 @@
 #define PAVUK_DOWNLOADER_H
 #include <Crawler.hpp>
 
-class Downloader{
+class Downloader {
  public:
   Downloader(const int& num_workers) : loaders(num_workers){};
 
@@ -14,7 +14,6 @@ class Downloader{
   static Html loading_http(const string& host, const string& target);
 
  private:
-
   ThreadPool loaders;
 };
 #endif  // PAVUK_DOWNLOADER_H

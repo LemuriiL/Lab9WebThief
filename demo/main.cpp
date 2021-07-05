@@ -1,10 +1,8 @@
 // Copyright 2021 LemuriiL <LemuriiL@yandex.ru>
 #include <Crawler.hpp>
 
-int main(int argc, const char *argv[])
-{
-  try
-  {
+int main(int argc, const char *argv[]) {
+  try {
     po::options_description desc{"Options"};
     desc.add_options()
         ("help,h", "Help screen")
@@ -22,15 +20,17 @@ int main(int argc, const char *argv[])
 
     if (vm.count("help"))
       std::cout << desc << '\n';
-    else if (vm.count("url") && vm.count("depth") && vm.count("network_threads")
-             && vm.count("parser_threads") && vm.count("output")){
+    else if (vm.count("url") && vm.count("depth") &&
+             vm.count("network_threads") && vm.count("parser_threads") &&
+             vm.count("output")) {
       Crawl crawl(vm["depth"].as<int>(), vm["output"].as<string>());
-      crawl.start(vm["url"].as<string>(), vm["network_threads"].as<int>(), vm["parser_threads"].as<int>());
+      crawl.start(vm["url"].as<string>(), vm["network_threads"].as<int>(),
+                  vm["parser_threads"].as<int>());
     } else
-      throw po::error("**********BAD SYNTAX**********\n"
-                      "Look to --help or -h and write all options");
-  } catch (const po::error &ex)
-  {
+      throw po::error(
+          "**********BAD SYNTAX**********\n"
+          "Look to --help or -h and write all options");
+  } catch (const po::error &ex) {
     std::cerr << ex.what() << '\n';
   }
 }
